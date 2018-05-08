@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_ChatBotModelStoreContainer" CdmEntityContainer="db_ChatBot_Entities">
+    <EntitySetMapping Name="Answer">
+      <EntityTypeMapping TypeName="db_ChatBotModel.Answer">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="TrainedAnswerId" ColumnName="TrainedAnswerId" />
+          <ScalarProperty Name="TrainedAnswer" ColumnName="TrainedAnswer" />
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+          <ScalarProperty Name="IntentId" ColumnName="IntentId" />
+          <ScalarProperty Name="Answer1" ColumnName="Answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BotReply">
+      <EntityTypeMapping TypeName="db_ChatBotModel.BotReply">
+        <MappingFragment StoreEntitySet="BotReply">
+          <ScalarProperty Name="BotReplyId" ColumnName="BotReplyId" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entity">
+      <EntityTypeMapping TypeName="db_ChatBotModel.Entity">
+        <MappingFragment StoreEntitySet="Entity">
+          <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="IntentId" ColumnName="IntentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Intent">
+      <EntityTypeMapping TypeName="db_ChatBotModel.Intent">
+        <MappingFragment StoreEntitySet="Intent">
+          <ScalarProperty Name="IntentId" ColumnName="IntentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="db_ChatBotModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="UserInput" ColumnName="UserInput" />
+          <ScalarProperty Name="IntentId" ColumnName="IntentId" />
+          <ScalarProperty Name="ScoreId" ColumnName="ScoreId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Score">
+      <EntityTypeMapping TypeName="db_ChatBotModel.Score">
+        <MappingFragment StoreEntitySet="Score">
+          <ScalarProperty Name="ScoreId" ColumnName="ScoreId" />
+          <ScalarProperty Name="IntentScore" ColumnName="IntentScore" />
+          <ScalarProperty Name="EntityScore" ColumnName="EntityScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Session">
+      <EntityTypeMapping TypeName="db_ChatBotModel.Session">
+        <MappingFragment StoreEntitySet="Session">
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Get_Intent_Statistics" FunctionName="db_ChatBotModel.Store.sp_Get_Intent_Statistics">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ChatBotModel.sp_Get_Intent_Statistics_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAnswer" FunctionName="db_ChatBotModel.Store.sp_GetAnswer" />
+    <FunctionImportMapping FunctionImportName="sp_QuestionInsert" FunctionName="db_ChatBotModel.Store.sp_QuestionInsert" />
+    <FunctionImportMapping FunctionImportName="sp_ScoreInsert" FunctionName="db_ChatBotModel.Store.sp_ScoreInsert" />
+    <FunctionImportMapping FunctionImportName="sp_AnswerInsert" FunctionName="db_ChatBotModel.Store.sp_AnswerInsert" />
+    <EntitySetMapping Name="TrainedAnswer">
+      <EntityTypeMapping TypeName="db_ChatBotModel.TrainedAnswer">
+        <MappingFragment StoreEntitySet="TrainedAnswer">
+          <ScalarProperty Name="TrainedQuestionId" ColumnName="TrainedQuestionId" />
+          <ScalarProperty Name="TrainedAnswer1" ColumnName="TrainedAnswer" />
+          <ScalarProperty Name="TrainedAnswerId" ColumnName="TrainedAnswerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainedQuestion">
+      <EntityTypeMapping TypeName="db_ChatBotModel.TrainedQuestion">
+        <MappingFragment StoreEntitySet="TrainedQuestion">
+          <ScalarProperty Name="TrainedQuestion1" ColumnName="TrainedQuestion" />
+          <ScalarProperty Name="TrainedQuestionId" ColumnName="TrainedQuestionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetTrainedAnswer" FunctionName="db_ChatBotModel.Store.sp_GetTrainedAnswer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ChatBotModel.sp_GetTrainedAnswer_Result">
+          <ScalarProperty Name="TrainedQuestion" ColumnName="TrainedQuestion" />
+          <ScalarProperty Name="TrainedAnswer" ColumnName="TrainedAnswer" />
+          <ScalarProperty Name="TrainedAnswerId" ColumnName="TrainedAnswerId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="EditIntentAnswer" FunctionName="db_ChatBotModel.Store.EditIntentAnswer" />
+    <FunctionImportMapping FunctionImportName="EditTrainedQnA" FunctionName="db_ChatBotModel.Store.EditTrainedQnA" />
+    <FunctionImportMapping FunctionImportName="sp_GetQnAbyIntent" FunctionName="db_ChatBotModel.Store.sp_GetQnAbyIntent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ChatBotModel.sp_GetQnAbyIntent_Result">
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Intent" ColumnName="Intent" />
+          <ScalarProperty Name="UserInput" ColumnName="UserInput" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetQuestionIntentScore" FunctionName="db_ChatBotModel.Store.sp_GetQuestionIntentScore">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ChatBotModel.sp_GetQuestionIntentScore_Result">
+          <ScalarProperty Name="IntentId" ColumnName="IntentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="UserInput" ColumnName="UserInput" />
+          <ScalarProperty Name="IntentScore" ColumnName="IntentScore" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAnswerIntentStatistics" FunctionName="db_ChatBotModel.Store.sp_GetAnswerIntentStatistics">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="db_ChatBotModel.sp_GetAnswerIntentStatistics_Result">
+          <ScalarProperty Name="IntentId" ColumnName="IntentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteIntentAnswer" FunctionName="db_ChatBotModel.Store.DeleteIntentAnswer" />
+  </EntityContainerMapping>
+</Mapping>

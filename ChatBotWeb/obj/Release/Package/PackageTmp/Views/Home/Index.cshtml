@@ -1,0 +1,340 @@
+﻿@using ChatBotWeb.Models
+@using Microsoft.Bot.Builder.Internals.Fibers
+
+@{
+	Layout = null;
+	List<Intent_Statistics> Podaci = (List<Intent_Statistics>)ViewData["Podaci"];
+	
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Chat Bot Application</title>
+	<!-- Bootstrap core CSS -->
+	<link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Assets/css/theme-css.css" rel="stylesheet" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<!-- Plugin CSS -->
+	<link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+
+	<link href="~/Assets/css/device-mockups.min.css" rel="stylesheet" />
+	<!-- Custom styles for this template -->
+	<link href="~/Assets/css/new-age.min.css" rel="stylesheet" />
+	<link rel='stylesheet' href='/Assets/css/bot_css.css' type='text/css' media='screen' />
+</head>
+<body id="page-top">
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+		<div class="container">
+			<a class="nav-link js-scroll-trigger" href="#chatbot">Chat Bot</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				Menu
+				<i class="fa fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+				    <li class="nav-item">
+				        @Html.ActionLink("Add Train Data", "TrainData", new { }, new { @class = "nav-link js-scroll-trigger" })
+				    </li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="#download">What to ask</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="#server-podaci">Server Info</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<header class="masthead" id="chatbot">
+		<div class="overlay-bg"></div>
+		<!-- particles.js container -->
+		<div id="particles-js"></div>
+		<div class="container h-100">
+			<div class="row h-100">
+				<div class="col-lg-7 my-auto">
+					<div class="header-content mx-auto">
+						<h1 class="mb-5">Chat Bot Application</h1>
+						<p>To begin with testing the app, just type hi or hello or something like that in input and hit enter.</p>
+						<p>Feel free to explore, play and train our bot, it's pure fun. You can get info about weather in your town or info about your favourite movie, ask for joke or play game.. just explore :). Don't forget to type help.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-5 my-auto">
+					<div class="device-container bot-holder">
+						<iframe src='https://webchat.botframework.com/embed/Arnie_chat_bot?s=T2lRHw53F6I.cwA.PQs.mjIOwPw-nfopa-XJ62QN_1k5zcYo49sUlLdPy-2fI_M'></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="download bg-primary text-center" id="download">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 mx-auto">
+					<h2 class="section-heading">Sample questions which you can use to ask bot : </h2>
+					<p>Because the Chat Bot application depends on a large amount of data, this list is constantly being extended  by these examples.. a few examples are shown here.</p>
+					<div class="col-md-6 mx-left">
+						<ul class="simple-list">
+							<li> <p>Can you give me an advice</p> </li>
+							<li> <p>Some good advice</p> </li>
+							<li> <p>Any advice</p> </li>
+							<li> <p>What is your favourite color?</p> </li>
+							<li> <p>What are most popular movies?</p> </li>
+							<li> <p>List me popular movies?</p> </li>
+							<li> <p>Popular movies?</p> </li>
+						</ul>
+					</div>
+					<div class="col-md-6 mx-left">
+						<ul class="simple-list">
+							<li> <p>What is your name?</p> </li>
+							<li> <p>What is CPU?</p> </li>
+							<li> <p>How old are you?</p> </li>
+							<li> <p>Are you real?</p> </li>
+							<li> <p>What do you look like?</p> </li>
+							<li> <p>Are you real?</p> </li>
+							<li> <p>Are you hungry?</p> </li>
+							<li> <p>itd ... </p> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="download text-center chart-area" id="chart">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 mx-auto">
+					<h2 class="section-heading">Dijagram namjera</h2>
+					<p class="mb-5 paragraph"></p>
+					<p class="mb-5 paragraph"></p>
+					<div class="chart-col">
+						<canvas id="myChart" width="600" height="400"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="download bg-primary text-center" id="server-podaci">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 mx-auto">
+					<h2 class="section-heading">Potrebni podaci</h2>
+					<p>Podaci o serveru</p>
+					<div class="col-md-6 mx-left">
+						<ul class="simple-list">
+							<li> <p>Naziv baze: db_ChatBot</p> </li>
+							<li> <p>Naziv servera: ***</p> </li>
+							<li> <p>Username: *** </p> </li>
+							<li> <p>Password: *** </p> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Bootstrap core JavaScript -->
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+	<script src="~/Scripts/bootstrap.min.js"></script>
+	<!-- Plugin JavaScript -->
+	<script src="~/Assets/js/jquery.easing.min.js"></script>
+	<!-- Custom scripts for this template -->
+	<script src="~/Assets/js/new-age.min.js"></script>
+	<!-- Chart script -->
+	<script src="~/Assets/js/Chart.bundle.min.js"></script>
+	<script>
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var labl =  @Html.Raw(Json.Encode(ViewData["NameData"]));
+		var myChart = new Chart(ctx,
+			{
+				type: 'bar',
+				data: {
+
+					labels: labl,
+					datasets: [
+						{
+							label: ' Ukupan broj traženih namjera (Intent)',
+							data: @Json.Encode(ViewData["NumberData"]),
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.4)',
+								'rgba(54, 162, 235, 0.4)',
+								'rgba(255, 206, 86, 0.4)',
+								'rgba(75, 192, 192, 0.4)',
+								'rgba(153, 102, 255, 0.4)',
+								'rgba(255, 159, 64, 0.4)',
+								'rgba(33, 150, 243, 0.4)',
+								'rgba(0, 150, 136, 0.4)',
+								'rgba(255, 87, 34, 0.4)',
+								'rgba(121, 85, 72, 0.4)',
+								'rgba(156, 39, 176, 0.4)',
+								'rgba(244, 67, 54, 0.4)'
+							],
+							borderColor: [
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)',
+								'rgba(33, 150, 243, 1)',
+								'rgba(0, 150, 136, 1)',
+								'rgba(255, 87, 34, 1)',
+								'rgba(121, 85, 72, 1)',
+								'rgba(156, 39, 176, 1)',
+								'rgba(244, 67, 54, 1)'
+							],
+							borderWidth: 1
+						}
+					]
+				},
+				options: {
+					scales: {
+						yAxes: [
+							{
+								ticks: {
+									beginAtZero: true
+								}
+							}
+						]
+					},
+					scales: {
+						xAxes: [{
+							gridLines: {
+								offsetGridLines: true
+							}
+						}]
+					}
+				}
+
+
+
+			});
+
+	</script>
+	<!-- particles.js lib - https://github.com/VincentGarreau/particles.js -->
+	<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib -->
+	<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+<script type="text/javascript">
+	particlesJS("particles-js", {
+		"particles": {
+			"number": {
+				"value": 80,
+				"density": {
+					"enable": true,
+					"value_area": 800
+				}
+			},
+			"color": {
+				"value": "#ffffff"
+			},
+			"shape": {
+				"type": "circle",
+				"stroke": {
+					"width": 0,
+					"color": "#000000"
+				},
+				"polygon": {
+					"nb_sides": 5
+				},
+				"image": {
+					"src": "../img/istock_000037174148_full.jpg",
+					"width": 100,
+					"height": 100
+				}
+			},
+			"opacity": {
+				"value": 0.5,
+				"random": false,
+				"anim": {
+					"enable": false,
+					"speed": 1,
+					"opacity_min": 0.1,
+					"sync": false
+				}
+			},
+			"size": {
+				"value": 3,
+				"random": true,
+				"anim": {
+					"enable": false,
+					"speed": 40,
+					"size_min": 0.1,
+					"sync": false
+				}
+			},
+			"line_linked": {
+				"enable": true,
+				"distance": 157.82952832645452,
+				"color": "#ffffff",
+				"opacity": 0.39457382081613634,
+				"width": 1
+			},
+			"move": {
+				"enable": true,
+				"speed": 1,
+				"direction": "none",
+				"random": true,
+				"straight": false,
+				"out_mode": "out",
+				"bounce": false,
+				"attract": {
+					"enable": false,
+					"rotateX": 600,
+					"rotateY": 1200
+				}
+			}
+		},
+		"interactivity": {
+			"detect_on": "canvas",
+			"events": {
+				"onhover": {
+					"enable": true,
+					"mode": "repulse"
+				},
+				"onclick": {
+					"enable": true,
+					"mode": "push"
+				},
+				"resize": true
+			},
+			"modes": {
+				"grab": {
+					"distance": 400,
+					"line_linked": {
+						"opacity": 1
+					}
+				},
+				"bubble": {
+					"distance": 400,
+					"size": 40,
+					"duration": 2,
+					"opacity": 8,
+					"speed": 3
+				},
+				"repulse": {
+					"distance": 200,
+					"duration": 0.4
+				},
+				"push": {
+					"particles_nb": 4
+				},
+				"remove": {
+					"particles_nb": 2
+				}
+			}
+		},
+		"retina_detect": true
+	});
+</script>
+</body>
+</html>

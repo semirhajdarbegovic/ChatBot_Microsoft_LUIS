@@ -1,0 +1,30 @@
+﻿/* Chat bot */
+.mcc.wc-console {
+	border: 2px solid #dbdee1;
+	bottom: -2px;
+	border-left: none;
+	border-right: none;
+	padding: 4px;
+	box-sizing: border-box;
+	height: 50px;
+	left: 0;
+	position: absolute;
+	right: 0;
+	color: #fff;
+}
+
+	.mcca.wc-textbox input {
+		background-color: transparent;
+		color: #fff;
+		letter-spacing: 0.5px;
+		font-weight: 400;
+	}
+
+.wc-console .wc-textbox input {
+	background-color: transparent;
+	color: #fff;
+}
+
+header.masthead .device-container iframe input {
+	color: #fff!important;
+}

@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_ChatBotModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="AnswerId" />
+    </Key>
+    <Property Name="AnswerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IntentId" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrainedAnswer" Type="bit" />
+    <Property Name="TrainedAnswerId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BotReply">
+    <Key>
+      <PropertyRef Name="BotReplyId" />
+    </Key>
+    <Property Name="BotReplyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionId" Type="int" Nullable="false" />
+    <Property Name="AnswerId" Type="int" Nullable="false" />
+    <Property Name="SessionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entity">
+    <Key>
+      <PropertyRef Name="EntityId" />
+    </Key>
+    <Property Name="EntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="IntentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Intent">
+    <Key>
+      <PropertyRef Name="IntentId" />
+    </Key>
+    <Property Name="IntentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionId" />
+    </Key>
+    <Property Name="QuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserInput" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IntentId" Type="int" Nullable="false" />
+    <Property Name="ScoreId" Type="int" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Score">
+    <Key>
+      <PropertyRef Name="ScoreId" />
+    </Key>
+    <Property Name="ScoreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IntentScore" Type="decimal" Precision="10" Scale="9" />
+    <Property Name="EntityScore" Type="decimal" Precision="10" Scale="9" />
+  </EntityType>
+  <EntityType Name="Session">
+    <Key>
+      <PropertyRef Name="SessionId" />
+    </Key>
+    <Property Name="SessionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrainedAnswer">
+    <Key>
+      <PropertyRef Name="TrainedAnswerId" />
+    </Key>
+    <Property Name="TrainedAnswerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrainedAnswer" Type="nvarchar(max)" />
+    <Property Name="TrainedQuestionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrainedQuestion">
+    <Key>
+      <PropertyRef Name="TrainedQuestionId" />
+    </Key>
+    <Property Name="TrainedQuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrainedQuestion" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Answer_Intent">
+    <End Role="Intent" Type="Self.Intent" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intent">
+        <PropertyRef Name="IntentId" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="IntentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Answer_TrainedAnswer">
+    <End Role="TrainedAnswer" Type="Self.TrainedAnswer" Multiplicity="0..1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainedAnswer">
+        <PropertyRef Name="TrainedAnswerId" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="TrainedAnswerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BotReply_Answer">
+    <End Role="Answer" Type="Self.Answer" Multiplicity="1" />
+    <End Role="BotReply" Type="Self.BotReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Answer">
+        <PropertyRef Name="AnswerId" />
+      </Principal>
+      <Dependent Role="BotReply">
+        <PropertyRef Name="AnswerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BotReply_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="BotReply" Type="Self.BotReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionId" />
+      </Principal>
+      <Dependent Role="BotReply">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BotReply_Session">
+    <End Role="Session" Type="Self.Session" Multiplicity="1" />
+    <End Role="BotReply" Type="Self.BotReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Session">
+        <PropertyRef Name="SessionId" />
+      </Principal>
+      <Dependent Role="BotReply">
+        <PropertyRef Name="SessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entity_Intent">
+    <End Role="Intent" Type="Self.Intent" Multiplicity="1" />
+    <End Role="Entity" Type="Self.Entity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intent">
+        <PropertyRef Name="IntentId" />
+      </Principal>
+      <Dependent Role="Entity">
+        <PropertyRef Name="IntentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Intent">
+    <End Role="Intent" Type="Self.Intent" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Intent">
+        <PropertyRef Name="IntentId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="IntentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Score">
+    <End Role="Score" Type="Self.Score" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Score">
+        <PropertyRef Name="ScoreId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="ScoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainedAnswer_TrainedQuestion">
+    <End Role="TrainedQuestion" Type="Self.TrainedQuestion" Multiplicity="1" />
+    <End Role="TrainedAnswer" Type="Self.TrainedAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainedQuestion">
+        <PropertyRef Name="TrainedQuestionId" />
+      </Principal>
+      <Dependent Role="TrainedAnswer">
+        <PropertyRef Name="TrainedQuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DeleteIntentAnswer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="answerID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="EditIntentAnswer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="answerID" Type="int" Mode="In" />
+    <Parameter Name="answer" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="EditTrainedQnA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="questionId" Type="int" Mode="In" />
+    <Parameter Name="answerId" Type="int" Mode="In" />
+    <Parameter Name="question" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="answer" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_AnswerInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IntentId" Type="int" Mode="In" />
+    <Parameter Name="Answer" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TrainedAsnwer" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_Get_Intent_Statistics" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAnswer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="QuestionId" Type="int" Mode="In" />
+    <Parameter Name="SessionId" Type="int" Mode="In" />
+    <Parameter Name="IntentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetQnAbyIntent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="intentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_QuestionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserInput" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="IntentId" Type="int" Mode="In" />
+    <Parameter Name="ScoreId" Type="int" Mode="In" />
+    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+    <Parameter Name="SessionId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ScoreInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IntentScore" Type="decimal" Mode="In" />
+    <Parameter Name="EntityScore" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_GetAnswerIntentStatistics" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="semir">
+    <Parameter Name="intentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetQuestionIntentScore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="semir">
+    <Parameter Name="intentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetTrainedAnswer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="semir">
+    <Parameter Name="Question" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="db_ChatBotModelStoreContainer">
+    <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BotReply" EntityType="Self.BotReply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entity" EntityType="Self.Entity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Intent" EntityType="Self.Intent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainedAnswer" EntityType="Self.TrainedAnswer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainedQuestion" EntityType="Self.TrainedQuestion" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Answer_Intent" Association="Self.FK_Answer_Intent">
+      <End Role="Intent" EntitySet="Intent" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Answer_TrainedAnswer" Association="Self.FK_Answer_TrainedAnswer">
+      <End Role="TrainedAnswer" EntitySet="TrainedAnswer" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BotReply_Answer" Association="Self.FK_BotReply_Answer">
+      <End Role="Answer" EntitySet="Answer" />
+      <End Role="BotReply" EntitySet="BotReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BotReply_Question" Association="Self.FK_BotReply_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="BotReply" EntitySet="BotReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BotReply_Session" Association="Self.FK_BotReply_Session">
+      <End Role="Session" EntitySet="Session" />
+      <End Role="BotReply" EntitySet="BotReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entity_Intent" Association="Self.FK_Entity_Intent">
+      <End Role="Intent" EntitySet="Intent" />
+      <End Role="Entity" EntitySet="Entity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Intent" Association="Self.FK_Question_Intent">
+      <End Role="Intent" EntitySet="Intent" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Score" Association="Self.FK_Question_Score">
+      <End Role="Score" EntitySet="Score" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainedAnswer_TrainedQuestion" Association="Self.FK_TrainedAnswer_TrainedQuestion">
+      <End Role="TrainedQuestion" EntitySet="TrainedQuestion" />
+      <End Role="TrainedAnswer" EntitySet="TrainedAnswer" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

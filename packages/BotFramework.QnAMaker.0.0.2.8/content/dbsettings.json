@@ -1,0 +1,5 @@
+﻿{
+    "ConnectionStrings": {
+        "Kb": "Data Source=kb.db"
+    }
+}

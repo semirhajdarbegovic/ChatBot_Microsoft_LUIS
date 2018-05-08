@@ -1,0 +1,214 @@
+﻿a:hover, button, button:hover {
+	-webkit-transition: all 0.35s ease-out;
+	-moz-transition: all 0.35s ease-out;
+	-o-transition: all 0.35s ease-out;
+	-ms-transition: all 0.35s ease-out;
+	transition: all 0.35s ease-out;
+}
+
+	button:focus, a:focus {
+		outline: none;
+	}
+
+a:hover, a:focus {
+	text-decoration: none;
+}
+/*
+header.masthead .device-container {
+	max-width: 100% !important;
+	background: rgba(23, 96, 150, 0.7) !important;
+}*/
+header.masthead .device-container {
+	max-width: 100% !important;
+	background: rgba(149, 212, 209, 0) !important;
+	min-height: 600px;
+	max-height: 600px;
+	box-shadow: 0px 0px 10px -2px #fff;
+}
+iframe {
+	border: none !important;
+}
+.bot-holder, .bot-holder iframe {
+	min-height: 600px;
+	height: 100%;
+	width: 100%;
+}
+header.masthead {
+	/* background: url('../img/bg-pattern.png'),-webkit-linear-gradient(90deg, rgb(0, 120, 215), rgb(20, 55, 90)) !important;
+	background: url('../img/bg-pattern.png'),linear-gradient(90deg, rgb(0, 120, 215), rgb(20, 55, 90)) !important;  */
+	background-image: url('../img/istock_000037174148_full.jpg') !important;
+	background-size: cover !important;
+}
+div#particles-js {
+	z-index: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+ul.simple-list {
+	float: left;
+	text-align: left;
+	margin-top: 40px;
+}
+.col-md-6.mx-left {
+	float: left;
+}
+.odg-2.hidden,
+.odg-3.hidden,
+.odg-4.hidden {
+	display: none;
+}
+.odg-2,
+.odg-3,
+.odg-4 {
+	position: relative;
+	float: left;
+	display: block;
+	width: 100%;
+}
+
+.login-form .btn-add {
+	border-radius: 2px;
+	font-size: 14px;
+	padding: 10px 15px;
+	letter-spacing: 0.5px;
+	text-transform: capitalize;
+	margin-bottom: 20px;
+	background-color: #3e84bc;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+.login-input-wrap input {
+	border-radius: 2px;
+	margin-bottom: 10px;
+	padding: 12px 15px;
+	color: #000;
+	background-color: rgba(255, 255, 255, 0.8);
+	outline: none;
+	-webkit-transition: all 0.35s ease-out;
+	-moz-transition: all 0.35s ease-out;
+	-o-transition: all 0.35s ease-out;
+	-ms-transition: all 0.35s ease-out;
+	transition: all 0.35s ease-out;
+}
+	.login-input-wrap input:focus {
+		background-color: #fff;
+		outline: none;
+		border-color: transparent;
+		box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.4);
+	}
+.login-form .btn-pohrani {
+	border-radius: 2px;
+	margin-top: 15px;
+	position: relative;
+	float: left;
+	font-size: 15px;
+	letter-spacing: 1px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.table-bordered.simple-table td, 
+.table-bordered.simple-table th {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	padding: 15px 20px;
+	vertical-align: middle;
+	margin: 15px 0;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4);
+
+}
+a.remove-input.btn {
+	position: absolute;
+	top: 0;
+	right: -35px;
+	background-color: #ff4a4a;
+	color: #fff;
+	border-radius: 2px;
+	padding: 3px 8px;
+	font-size: 12px;
+	-webkit-transition: all 0.35s ease-out;
+	-moz-transition: all 0.35s ease-out;
+	-o-transition: all 0.35s ease-out;
+	-ms-transition: all 0.35s ease-out;
+	transition: all 0.35s ease-out;
+}
+a.remove-input.btn:hover {
+	background-color: #eb1d1d;
+}
+.login-form .btn-pohrani:hover {
+	color: #fff;
+	background-color: #3e84bc;
+}
+.collapse.in {
+	display: block;
+}
+.simple-table {
+	height: 100%;
+	max-height: 1000px;
+	overflow-y: scroll;
+	position: relative;
+	float: left;
+	display: block;
+	border: 0px;
+}
+	.simple-table::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+		border-radius: 0px;
+		background-color: #c1c0c0;
+	}
+
+	.simple-table::-webkit-scrollbar {
+		width: 12px;
+		background-color: #c1c0c0;
+	}
+
+	.simple-table::-webkit-scrollbar-thumb {
+		border-radius: 0px;
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+		background-color: #555;
+	}
+.overlay-bg {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.38);
+	opacity: 1;
+	z-index: 0;
+	position: absolute;
+}
+header.masthead .header-content h1 {
+	font-weight: 700;
+	text-shadow: 1px 1px #fff;
+}
+header.masthead .header-content p {
+	text-shadow: 1px 1px #fff;
+}
+#mainNav .navbar-nav > li > a {
+	font-weight: 600;
+	margin-right: 15px;
+	letter-spacing: 1px;
+}
+mainNav .navbar-nav > li > a:last-child {
+	margin-right: 0;		
+	}
+canvas#myChart {
+		background-color: #ffffff;
+		padding: 30px;
+	}
+#chart.chart-area {
+	background-color: rgba(33, 150, 243, 0.4);
+}
+
+.paragraph {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+/*------------ ( MAX 480 PX SCREEN ) ------------*/
+@media only screen and (max-width:480px) {
+	.nav-link {
+		display: block;
+		padding: .5rem 1rem;
+		padding-left: 0;
+	}
+}

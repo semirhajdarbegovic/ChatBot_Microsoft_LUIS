@@ -1,0 +1,275 @@
+﻿@using ChatBotWeb.Models
+@{
+	Layout = null;
+	List<ListaOdgovora> Podaci = (List<ListaOdgovora>)ViewData["Podaci"];
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Chat Bot Application</title>
+	<!-- Bootstrap core CSS -->
+	<link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Assets/css/theme-css.css" rel="stylesheet" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<!-- Plugin CSS -->
+
+	<link href="~/Assets/css/device-mockups.min.css" rel="stylesheet" />
+	<!-- Custom styles for this template -->
+	<link href="~/Assets/css/new-age.min.css" rel="stylesheet" />
+	<!-- Ion Icons -->
+	<link href="~/Assets/css/font-ion-icons/css/ionicons.min.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+	<!-- Navigation -->
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+	<div class="container">
+		<a class="nav-link js-scroll-trigger" href="#chatbot">Chat Bot</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			Menu
+			<i class="fa fa-bars"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="Index">Početna stranica</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="#download">Primjeri pitanja</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<header class="masthead" id="chatbot">
+	<div class="overlay-bg"></div>
+	<!-- particles.js container -->
+	<div id="particles-js"></div>
+	<div class="container h-100">
+		<div class="row h-100">
+			<div class="col-lg-7 my-auto">
+				<div class="header-content mx-auto">
+					<h1 class="mb-5">Treniranje modela Chat Bot aplikacije</h1>
+					<p>Unesite prvo pitanje a zatim odgovor u ponudjena polja. U slučaju da želite dodati više od jednog odgovora za dato pitanje, onda kliknite na "Dodaj novi Odgovor" i tu upišite željeni odgovor. Nakon toga kliknite na "POHRANI" nakon čega će se pohraniti podaci u bazu podataka.</p>
+					<p>Zahvaljujemo Vam se na učestvovanju. :)</p>
+				</div>
+			</div>
+			<div class="col-lg-5 my-auto">
+				<div class="login-form">
+					<button class="btn btn-md btn-default btn-add">Dodaj novi odgovor</button>
+					@using (Html.BeginForm("InsertData", "Home"))
+				{
+					<div class="login-input-wrap">
+						<input type="text" class="form-control" name="pitanje" id="pitanje" placeholder="Unos pitanja" autofocus>
+
+						<input type="text" class="form-control" name="odgovor[]" placeholder="Unos odgovora">
+						<div class="odg-2 hidden">
+							<input type="text" class="form-control" name="odgovor[]" placeholder="Unos odgovora">
+							<a href="#" class="remove-input btn" data-toggle="tooltip" data-placement="top" title="Ukloni pitanje"><i class="ion-close-round"></i></a>
+						</div>
+						<div class="odg-3 hidden">
+							<input type="text" class="form-control" name="odgovor[]" placeholder="Unos odgovora">
+							<a href="#" class="remove-input btn" data-toggle="tooltip" data-placement="top" title="Ukloni pitanje"><i class="ion-close-round"></i></a>
+						</div>
+						<div class="odg-4 hidden">
+							<input type="text" class="form-control" name="odgovor[]" placeholder="Unos odgovora">
+							<a href="#" class="remove-input btn" data-toggle="tooltip" title="Ukloni pitanje"><i class="ion-close-round"></i> </a>
+						</div>
+					</div>
+
+					<button class="btn btn-xl btn-block btn-pohrani" type="submit">Pohrani</button>
+			}
+				</div> <!-- /container -->
+			</div>
+		</div>
+	</div>
+</header>
+	<section class="download bg-primary text-center" id="download">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 mx-auto">
+					<h2 class="section-heading">Lista treniranih podataka: </h2>
+					<p>Lista se konstantno proširuje...</p>
+					
+						<table class="table table-hover table-bordered simple-table">
+							<tr>
+								<th>Question</th>
+								<th>Answer</th>
+							</tr>
+							@foreach (ListaOdgovora odg in Podaci)
+							{
+								for (int i = 0; i < odg.Answer.Count; i++)
+								 {
+									 <tr>
+										 <td>@odg.Question</td>
+										 <td>@odg.Answer[i]</td>
+									 </tr>
+								 }
+							}
+						</table>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="~/Assets/js/jquery.easing.min.js"></script>
+<!-- Custom scripts for this template -->
+<script src="~/Assets/js/new-age.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('[data-toggle="tooltip"]').tooltip(); 
+
+		$('.btn-add').on('click', function () {
+			var count = $('.hidden').length;
+			if (count == 3) {
+				$('.odg-2').removeClass('hidden');
+				count--;
+			} else if (count == 2) {
+				$('.odg-3').removeClass('hidden');
+				count--;
+			}
+			else if (count == 1) {
+				$('.odg-4').removeClass('hidden');
+				count--;
+			}
+			else { }
+		});
+
+		$('.remove-input').on('click', function (e) {
+			e.preventDefault();
+			$(this).parent().addClass('hidden');
+			$(this).siblings().val("");
+		});
+
+			
+	});
+</script>
+<!-- particles.js lib - https://github.com/VincentGarreau/particles.js --> <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib --> <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+<script type="text/javascript">
+	particlesJS("particles-js", {
+		"particles": {
+			"number": {
+				"value": 80,
+				"density": {
+					"enable": true,
+					"value_area": 800
+				}
+			},
+			"color": {
+				"value": "#ffffff"
+			},
+			"shape": {
+				"type": "circle",
+				"stroke": {
+					"width": 0,
+					"color": "#000000"
+				},
+				"polygon": {
+					"nb_sides": 5
+				},
+				"image": {
+					"src": "../img/istock_000037174148_full.jpg",
+					"width": 100,
+					"height": 100
+				}
+			},
+			"opacity": {
+				"value": 0.5,
+				"random": false,
+				"anim": {
+					"enable": false,
+					"speed": 1,
+					"opacity_min": 0.1,
+					"sync": false
+				}
+			},
+			"size": {
+				"value": 3,
+				"random": true,
+				"anim": {
+					"enable": false,
+					"speed": 40,
+					"size_min": 0.1,
+					"sync": false
+				}
+			},
+			"line_linked": {
+				"enable": true,
+				"distance": 157.82952832645452,
+				"color": "#ffffff",
+				"opacity": 0.39457382081613634,
+				"width": 1
+			},
+			"move": {
+				"enable": true,
+				"speed": 1,
+				"direction": "none",
+				"random": true,
+				"straight": false,
+				"out_mode": "out",
+				"bounce": false,
+				"attract": {
+					"enable": false,
+					"rotateX": 600,
+					"rotateY": 1200
+				}
+			}
+		},
+		"interactivity": {
+			"detect_on": "canvas",
+			"events": {
+				"onhover": {
+					"enable": true,
+					"mode": "repulse"
+				},
+				"onclick": {
+					"enable": true,
+					"mode": "push"
+				},
+				"resize": true
+			},
+			"modes": {
+				"grab": {
+					"distance": 400,
+					"line_linked": {
+						"opacity": 1
+					}
+				},
+				"bubble": {
+					"distance": 400,
+					"size": 40,
+					"duration": 2,
+					"opacity": 8,
+					"speed": 3
+				},
+				"repulse": {
+					"distance": 200,
+					"duration": 0.4
+				},
+				"push": {
+					"particles_nb": 4
+				},
+				"remove": {
+					"particles_nb": 2
+				}
+			}
+		},
+		"retina_detect": true
+	}); 
+</script>
+</body>
+</html>

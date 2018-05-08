@@ -1,0 +1,10 @@
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\bin\Debug\APIXULib.dll
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\bin\Debug\APIXULib.pdb
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\obj\Debug\APIXULib.csprojResolveAssemblyReference.cache
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\obj\Debug\APIXULib.csproj.CoreCompileInputs.cache
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\obj\Debug\APIXULib.dll
+C:\Users\Master-PC\Documents\Visual Studio 2017\Projects\ChatBot\APIXULib\obj\Debug\APIXULib.pdb

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d49a97d9b614532ae91f97d4dc2e574" Name="Diagram1">
+        <EntityTypeShape EntityType="db_ChatBotModel.Answer" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ChatBotModel.BotReply" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ChatBotModel.Entity" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ChatBotModel.Intent" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ChatBotModel.Question" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ChatBotModel.Score" Width="1.5" PointX="3.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ChatBotModel.Session" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="db_ChatBotModel.FK_Answer_Intent" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ChatBotModel.FK_BotReply_Answer" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ChatBotModel.FK_BotReply_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ChatBotModel.FK_BotReply_Session" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ChatBotModel.FK_Entity_Intent" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ChatBotModel.FK_Question_Intent" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ChatBotModel.FK_Question_Score" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_ChatBotModel.TrainedAnswer" Width="1.5" PointX="5.625" PointY="0.75" />
+        <EntityTypeShape EntityType="db_ChatBotModel.TrainedQuestion" Width="1.5" PointX="8.25" PointY="0.75" />
+        <AssociationConnector Association="db_ChatBotModel.FK_Answer_TrainedAnswer" />
+        <AssociationConnector Association="db_ChatBotModel.FK_TrainedAnswer_TrainedQuestion" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
